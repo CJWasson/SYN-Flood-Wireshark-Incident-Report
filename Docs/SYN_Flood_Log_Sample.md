@@ -22,3 +22,32 @@ This is a simplified walkthrough of what a SYN flood attack might look like in n
 
 ## 🔍 Wireshark Filter Used
 
+
+This filter displays SYN packets without ACKs — a key indicator of a SYN flood attack.
+
+---
+
+## 🔄 Normal TCP Handshake vs. SYN Flood
+
+| Step                  | Normal Connection | SYN Flood Attack |
+|-----------------------|-------------------|------------------|
+| Client → Server: SYN  | ✅                | ✅               |
+| Server → Client: SYN-ACK | ✅             | ✅               |
+| Client → Server: ACK  | ✅ (completes)    | ❌ (missing)     |
+
+---
+
+## 🛡️ Key Indicators
+
+- A burst of SYN packets from the same or spoofed IPs
+- No follow-up ACKs to complete the handshake
+- HTTP 504 and RST, ACK errors from the server
+
+---
+
+## ✅ Mitigation Suggestions
+
+- Enable SYN cookies
+- Rate-limit incoming SYN requests
+- Use firewalls and intrusion detection rules
+- Consider cloud-based DDoS protection (e.g. Cloudflare, AWS Shield)
