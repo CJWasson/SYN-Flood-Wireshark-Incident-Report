@@ -2,18 +2,19 @@
 
 ## Project Overview
 
-This project simulates and analyzes a SYN flood Denial-of-Service (DoS) attack using Wireshark. It was completed as part of a cybersecurity training exercise to demonstrate the ability to identify, investigate, and respond to abnormal network traffic patterns.
+This project demonstrates the identification and analysis of a SYN flood Denial-of-Service (DoS) attack using Wireshark. It simulates a real-world scenario in which a web server is overwhelmed by half-open TCP connections due to repeated SYN packets. The project includes both summary and detailed incident reports, log samples, and a breakdown of the packet flow.
 
-A SYN flood attack exploits the TCP handshake by sending a high volume of SYN packets to a server without completing the connection, leaving the server overwhelmed with half-open connections. This prevents legitimate users from accessing web services and can cause serious service disruption.
+A SYN flood is a type of DoS attack that exploits the TCP handshake by sending numerous SYN requests without completing the connection. This causes the server's connection queue to fill, eventually resulting in service disruption.
 
 ---
 
 ## What's Included
 
-- A sample Wireshark TCP/HTTP log showing the SYN flood in progress
-- A cybersecurity incident report summarizing the attack and response
-- Supporting documentation to help interpret TCP packet data
-- Key lessons on detecting and mitigating DoS attacks
+- A simplified Wireshark log showing SYN flood packet behavior
+- A detailed enterprise-style incident report in PDF format
+- A Montana-style incident report template for quick reporting
+- Graph-style packet timeline illustrating handshake vs. flood
+- Supporting artifacts for analysis and documentation
 
 ---
 
@@ -22,52 +23,56 @@ A SYN flood attack exploits the TCP handshake by sending a high volume of SYN pa
 ```text
 SYN-Flood-Wireshark-Incident-Report/
 ├── README.md
+├── LICENSE.md
 ├── Docs/
-│   ├── Cybersecurity_Incident_Report.pdf
-│   ├── How_to_Read_Wireshark_Log.pdf
-│   └── Activity_Description.pdf
+│   ├── Cybersecurity_Incident_Report_Cortex_Enterprise.pdf
+│   ├── Wireshark_Log.docx
+│   ├── Activity_Description.pdf
+│   └── SYN_Flood_Log_Sample.md
+├── Templates/
+│   └── Cybersecurity_Incident_Report_Form_Cortex.pdf
 ├── Logs/
 │   └── SYN_Flood_Log_Sample.md
 ├── Visuals/
-│   └── SYN_Flood_Packet_Example.png
-├── Templates/
-│   └── Incident_Report_Template.pdf
+│   └── SYN_Flood_Packet_Progression.xlsx
 ```
 
 ---
 
 ## Scenario Summary
 
-One afternoon, the company's monitoring system reported issues with the web server. Employees received connection timeout errors when trying to access the internal sales webpage. Wireshark was used to analyze traffic to and from the server, revealing a flood of SYN packets from a suspicious IP address.
+An internal monitoring system detects performance degradation on the company’s web server. Users report connection timeout errors. Upon investigation using Wireshark, a large number of SYN packets from a suspicious IP address are discovered. These half-open connections prevent legitimate traffic from completing, indicating a SYN flood attack.
 
-The server became overwhelmed and was unable to respond to legitimate traffic — a clear indicator of a SYN flood DoS attack.
+Mitigation steps include taking the server offline, blocking the attacker’s IP, and reviewing log data to confirm the attack vector.
 
 ---
 
 ## Key Indicators from the Log
 
-- Repeated SYN packets from the attacker (203.0.113.0)
-- No completion of TCP handshakes (missing ACKs)
-- Rising number of [RST, ACK] and HTTP 504 Gateway Timeout responses
+- Multiple SYN packets without ACKs
+- Lack of completed TCP handshakes
+- HTTP 504 Gateway Timeout responses
+- RST, ACK packets from server indicating dropped sessions
 
 ---
 
 ## Lessons Learned
 
-- SYN flood attacks can quickly disrupt web services.
-- Packet sniffers like Wireshark help confirm the nature of an attack.
-- Mitigation can include SYN cookies, rate limiting, and IP filtering.
-- Layered security and network monitoring are essential to respond to DoS events.
+- SYN floods can exhaust server resources quickly
+- Packet capture tools like Wireshark are critical for confirmation
+- SYN cookies, rate limiting, and IP filtering are key defenses
+- Continuous monitoring can reduce downtime from DoS attacks
 
 ---
 
 ## Tools Used
 
-- Wireshark – For packet analysis
-- Markdown & GitHub – For documentation and publishing
+- Wireshark – Packet analysis
+- Markdown & GitHub – Documentation and publishing
+- Excel & Word – Table visualization and report formatting
 
 ---
 
 ## Contact
 
-This repository is part of a cybersecurity learning project. For questions or feedback, feel free to open an issue or fork the project.
+This repository was built as part of a cybersecurity learning exercise to demonstrate practical analysis and reporting skills. For feedback or contributions, feel free to fork the project or open an issue.
