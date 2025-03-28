@@ -4,7 +4,7 @@ This is a simplified walkthrough of what a SYN flood attack might look like in n
 
 ---
 
-## 📡 Log Snapshot (Sample Packets)
+##  Log Snapshot (Sample Packets)
 
 | No. | Time (s) | Source IP     | Destination IP | Protocol | Info                              |
 |-----|----------|---------------|----------------|----------|-----------------------------------|
@@ -20,14 +20,14 @@ This is a simplified walkthrough of what a SYN flood attack might look like in n
 
 ---
 
-## 🔍 Wireshark Filter Used
+##  Wireshark Filter Used
 
 
 This filter displays SYN packets without ACKs — a key indicator of a SYN flood attack.
 
 ---
 
-## 🔄 Normal TCP Handshake vs. SYN Flood
+##  Normal TCP Handshake vs. SYN Flood
 
 | Step                  | Normal Connection | SYN Flood Attack |
 |-----------------------|-------------------|------------------|
@@ -37,7 +37,7 @@ This filter displays SYN packets without ACKs — a key indicator of a SYN flood
 
 ---
 
-## 🛡️ Key Indicators
+##  Key Indicators
 
 - A burst of SYN packets from the same or spoofed IPs
 - No follow-up ACKs to complete the handshake
@@ -45,7 +45,7 @@ This filter displays SYN packets without ACKs — a key indicator of a SYN flood
 
 ---
 
-## ✅ Mitigation Suggestions
+##  Mitigation Suggestions
 
 - Enable SYN cookies
 - Rate-limit incoming SYN requests
