@@ -6,7 +6,7 @@ These are sample firewall rules and configurations designed to reduce the risk o
 
 ---
 
-## * Linux with IPTables
+##  Linux with IPTables
 
 ### 1. Drop excessive incoming SYN packets
 ```bash
@@ -26,7 +26,7 @@ iptables -A INPUT -s 203.0.113.0 -j DROP
 
 ---
 
-## * UFW (Uncomplicated Firewall on Ubuntu)
+##  UFW (Uncomplicated Firewall on Ubuntu)
 
 ### 1. Rate limit new connections
 ```bash
@@ -42,7 +42,7 @@ sudo ufw deny from 203.0.113.0
 
 ---
 
-## * Firewall Best Practices
+##  Firewall Best Practices
 
 - **Log dropped packets** for visibility  
 - **Set connection limits** based on service  
