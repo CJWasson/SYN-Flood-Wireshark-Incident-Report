@@ -1,29 +1,33 @@
 #!/bin/bash
+# SYN Flood Mitigation Script (Learning Use Only)
+# -----------------------------------------------
+# This script is intended for educational purposes to show how a system admin
+# might respond to signs of a SYN flood attack. It includes basic commands
+# for blocking an IP and enabling system-level protections.
 
-# SYN Flood Mitigation Script (for learning/demo purposes)
-# This script applies temporary firewall rules to reduce SYN flood impact
+# Log start time
+echo "[+] Starting SYN flood mitigation at $(date)"
 
-# Set interface and suspected malicious IP (example IP used here)
-INTERFACE="eth0"
-ATTACKER_IP="203.0.113.0"
+# Define the suspicious IP (example IP)
+MALICIOUS_IP="203.0.113.0"
+
+# Block the IP using iptables
+echo "[+] Blocking IP: $MALICIOUS_IP"
+sudo iptables -A INPUT -s $MALICIOUS_IP -j DROP
 
 # Enable SYN cookies
-sysctl -w net.ipv4.tcp_syncookies=1
+if [ -f /proc/sys/net/ipv4/tcp_syncookies ]; then
+  echo "[+] Enabling TCP SYN cookies"
+  echo 1 | sudo tee /proc/sys/net/ipv4/tcp_syncookies > /dev/null
+else
+  echo "[-] tcp_syncookies setting not found"
+fi
 
-# Drop excessive SYN packets
-iptables -A INPUT -i $INTERFACE -p tcp --syn -m limit --limit 1/s --limit-burst 4 -j ACCEPT
-iptables -A INPUT -i $INTERFACE -p tcp --syn -j DROP
+# Optional: Limit SYN rate (adjust values as needed)
+echo "[+] Adding SYN rate limit rules"
+sudo iptables -A INPUT -p tcp --syn -m limit --limit 1/s --limit-burst 4 -j ACCEPT
+sudo iptables -A INPUT -p tcp --syn -j DROP
 
-# Block the attacking IP address
-iptables -A INPUT -s $ATTACKER_IP -j DROP
+# Done
+echo "[+] Mitigation steps completed at $(date)"
 
-# Log the blocked attempts (optional)
-iptables -A INPUT -s $ATTACKER_IP -j LOG --log-prefix "[SYN Flood Blocked] " --log-level 4
-
-# Print confirmation
-echo "SYN flood mitigation rules applied on $INTERFACE for IP $ATTACKER_IP"
-
-# Note: Run as root or with sudo. These rules are not persistent after reboot unless saved.
-# For permanent rules, use iptables-save and iptables-restore or a firewall manager.
-
-# End of script
