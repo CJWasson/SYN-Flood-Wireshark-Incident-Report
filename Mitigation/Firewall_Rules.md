@@ -48,8 +48,3 @@ sudo ufw deny from 203.0.113.0
 - **Set connection limits** based on service  
 - **Use external DDoS protection** (e.g., Cloudflare, AWS Shield)  
 - **Combine firewall rules with IDS/IPS** for layered defense
-
----
-
-> ✅ These are defensive measures, not cures. SYN floods often come from spoofed IPs, so your long-term strategy should include traffic shaping, rate limiting, and upstream filtering.
-
