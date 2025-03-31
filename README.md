@@ -20,6 +20,8 @@ I kept everything in this repo practical and real-world focused. From the Wiresh
 
 - **Form-style incident report** – Located in the `/Templates` folder as an alternate, quick-reference format.
 
+- **Mitigation Resources** – Starting with a `Firewall_Rules.md` file in the `/Mitigation` folder. These examples are included to show how a SYN flood might be mitigated at the firewall level. While I understand what these rules are doing and why they’re used, I have not personally implemented them in a production environment.
+
 ---
 
 ## Repo Layout
@@ -35,8 +37,8 @@ SYN-Flood-Wireshark-Incident-Report/
 │   └── SYN_Flood_Log_Sample.md
 ├── Templates/
 │   └── Cybersecurity_Incident_Report_Form_Cortex.pdf
-├── Logs/
-│   └── SYN_Flood_Log_Sample.md
+├── Mitigation/
+│   └── Firewall_Rules.md
 ├── Visuals/
 │   └── SYN_Flood_Packet_Progression.xlsx
 ```
@@ -52,4 +54,3 @@ SYN-Flood-Wireshark-Incident-Report/
 ---
 
 If you're checking this out to learn or review my work — thanks for taking a look!
-
